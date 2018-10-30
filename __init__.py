@@ -56,7 +56,7 @@ def record_audio():
 
     p = pyaudio.PyAudio()
     stream = p.open(format=FORMAT,
-                    channels = 2,
+                    channels = 6,
                     rate = RATE,
                     input = True,
                     input_device_index = 1,
