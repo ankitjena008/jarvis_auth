@@ -101,6 +101,7 @@ def record_audio():
     wf.setframerate(RATE)
     wf.writeframes(b''.join(frames))
     wf.close()
+    print("Debugging end of record_audio()")
 
 
 def play_audio(file):
