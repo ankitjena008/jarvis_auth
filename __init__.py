@@ -9,7 +9,8 @@
 
 from adapt.intent import IntentBuilder
 from mycroft.skills.core import MycroftSkill, intent_handler, intent_file_handler
-import pyaudio, wave, sys, requests
+import pyaudio, wave, sys
+import requests
 
 CHUNK = 8192
 FORMAT = pyaudio.paInt16
