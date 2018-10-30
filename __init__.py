@@ -11,6 +11,7 @@ from adapt.intent import IntentBuilder
 from mycroft.skills.core import MycroftSkill, intent_handler, intent_file_handler
 import pyaudio, wave, sys
 import requests
+from VoiceIt import *
 
 CHUNK = 8192
 FORMAT = pyaudio.paInt16
@@ -54,11 +55,9 @@ class AuthenticateSkill(MycroftSkill):
         check_voice_it()
 
 def check_voice_it():
-    url = 'https://siv.voiceprintportal.com/sivservice/api/authentications'
-    headers = {'UserId': 'trbharathwaj','VsitPassword':'Token','VsitDeveloperId': 'trbharathwaj', 'ContentLanguage':'en-US' }
-    files = {'file': ('Audio.wav', open('/home/brad/Desktop/mycroft-core/Audio_.wav', 'rb'), 'audio/wav')}
-    r = requests.post(url, headers=headers, files=files)
-    print(r.text)
+    myVoiceIt = VoiceIt("a3f54f38702e4477ad2d5befe6282725")
+    response = myVoiceIt.authentication("usr_58917f0b259941ad91a7a8088c32b949", "@gYU3zLi", "/Users/brad/Downloads/Audio_.wav", "en-US")
+    print(response)
 
 def record_audio():
 
