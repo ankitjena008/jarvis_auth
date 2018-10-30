@@ -2,3 +2,4 @@
 gensim
 pyaudio
 requests
+hashlib
