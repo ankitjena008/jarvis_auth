@@ -12,6 +12,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler, intent_file_handle
 import pyaudio, wave, sys
 import requests
 import hashlib
+import time
 
 CHUNK = 8192
 FORMAT = pyaudio.paInt16
