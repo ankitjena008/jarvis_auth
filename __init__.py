@@ -61,15 +61,10 @@ def check_voice_it():
             wavData = file.read()
 
     headers = {'PlatformID': '2', 'Content-Type': 'audio/wav', "UserId": userId, "VsitPassword": password, "VsitDeveloperId": developerID, "ContentLanguage":"en-US"}
-    try:
-        response = requests.post(
+    response = requests.post(
                 self.urlAuthentication, headers=headers, data=wavData)
-            return response.text
-        except requests.exceptions.HTTPError as e:
-            return e.read()
-    
-    print(response)
-
+    print(response.text)
+     
 def record_audio():
 
     p = pyaudio.PyAudio()
