@@ -10,6 +10,7 @@
 from adapt.intent import IntentBuilder
 from mycroft.skills.core import MycroftSkill, intent_handler, intent_file_handler
 import pyaudio, wave, sys
+import time
 
 CHUNK = 8192
 FORMAT = pyaudio.paInt16
@@ -48,6 +49,7 @@ class AuthenticateSkill(MycroftSkill):
         for i in range(p.get_device_count()):
             print('Index : ', i, "\n", p.get_device_info_by_index(i))
         self.speak_dialog("auth.me")
+        time.sleep(5)
         record_audio()
         play_audio('Audio_.wav')
 
