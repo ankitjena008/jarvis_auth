@@ -9,7 +9,7 @@
 
 from adapt.intent import IntentBuilder
 from mycroft.skills.core import MycroftSkill, intent_handler, intent_file_handler
-import pyaudio, wave, sys
+import pyaudio, wave, sys, requests
 
 CHUNK = 8192
 FORMAT = pyaudio.paInt16
@@ -50,6 +50,8 @@ class AuthenticateSkill(MycroftSkill):
         self.speak_dialog("auth.me")
         record_audio()
         play_audio('Audio_.wav')
+        r = requests.get('https://api.github.com/events')
+        print r.content
 
 
 def record_audio():
