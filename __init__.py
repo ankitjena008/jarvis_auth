@@ -77,7 +77,7 @@ def record_audio():
                     channels = 1,
                     rate = RATE,
                     input = True,
-                    input_device_index = 1,
+                    input_device_index = 2,
                     frames_per_buffer = CHUNK)
 
     print("* Now Recording")
