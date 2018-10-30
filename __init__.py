@@ -51,7 +51,14 @@ class AuthenticateSkill(MycroftSkill):
         self.speak_dialog("auth.me")
         record_audio()
         play_audio('Audio_.wav')
+        check_voice_it()
 
+def check_voice_it():
+    url = 'https://siv.voiceprintportal.com/sivservice/api/authentications'
+    headers = {'UserId': 'trbharathwaj','VsitPassword':'Token','VsitDeveloperId': 'trbharathwaj', 'ContentLanguage':'en-US' }
+    #files = {'file': ('Audio_.wav', open('../Audio_.wav', 'rb'), 'audio/wav')}
+    r = requests.post(url, headers=headers, files=files)
+    print r.text
 
 def record_audio():
 
