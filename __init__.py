@@ -11,7 +11,6 @@ from adapt.intent import IntentBuilder
 from mycroft.skills.core import MycroftSkill, intent_handler, intent_file_handler
 import pyaudio, wave, sys
 import requests
-from VoiceIt import *
 
 CHUNK = 8192
 FORMAT = pyaudio.paInt16
@@ -55,8 +54,20 @@ class AuthenticateSkill(MycroftSkill):
         check_voice_it()
 
 def check_voice_it():
-    myVoiceIt = VoiceIt("a3f54f38702e4477ad2d5befe6282725")
-    response = myVoiceIt.authentication("usr_58917f0b259941ad91a7a8088c32b949", "@gYU3zLi", "/Users/brad/Downloads/Audio_.wav", "en-US")
+    password = getSHA256("@gYU3zLi")
+    userId = "usr_58917f0b259941ad91a7a8088c32b949"
+    developerID = "a3f54f38702e4477ad2d5befe6282725"
+    with open('/home/brad/Desktop/mycroft-core/Audio_.wav', 'rb') as file:
+            wavData = file.read()
+
+    headers = {'PlatformID': '2', 'Content-Type': 'audio/wav', "UserId": userId, "VsitPassword": password, "VsitDeveloperId": developerID, "ContentLanguage":"en-US"}
+    try:
+        response = requests.post(
+                self.urlAuthentication, headers=headers, data=wavData)
+            return response.text
+        except requests.exceptions.HTTPError as e:
+            return e.read()
+    
     print(response)
 
 def record_audio():
