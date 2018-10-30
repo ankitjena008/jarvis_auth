@@ -54,8 +54,8 @@ class AuthenticateSkill(MycroftSkill):
         check_voice_it()
 
 def check_voice_it():
-    #password = getSHA256("Password1234")
-    password = "Password1234"
+    #password = getSHA256("Password1234@")
+    password = "Password1234@"
     userId = "usr_58917f0b259941ad91a7a8088c32b949"
     developerID = "a3f54f38702e4477ad2d5befe6282725"
     with open('/home/brad/Desktop/mycroft-core/Audio_.wav', 'rb') as file:
