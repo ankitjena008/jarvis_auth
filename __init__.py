@@ -17,7 +17,7 @@ CHUNK = 8192
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 16000
-RECORD_SECONDS = 10
+RECORD_SECONDS = 5
 WAVE_OUTPUT_FILENAME = 'Audio_.wav'
 
 
@@ -50,6 +50,7 @@ class AuthenticateSkill(MycroftSkill):
         for i in range(p.get_device_count()):
             print('Index : ', i, "\n", p.get_device_info_by_index(i))
         self.speak_dialog("auth.me")
+        time.sleep(5)
         record_audio()
         play_audio('Audio_.wav')
         check_voice_it()
@@ -60,7 +61,7 @@ def check_voice_it():
     print(pwd)
     userId = "bharathwaj"
     developerID = "a3f54f38702e4477ad2d5befe6282725"
-    with open('/home/brad/Desktop/mycroft-core/Audio.wav', 'rb') as file:
+    with open('/home/brad/Desktop/mycroft-core/Audio_.wav', 'rb') as file:
             wavData = file.read()
 
     headers = {'PlatformID': '2', 'Content-Type': 'audio/wav', "UserId": userId, "VsitPassword": pwd, "VsitDeveloperId": developerID, "ContentLanguage":"en-US"}
