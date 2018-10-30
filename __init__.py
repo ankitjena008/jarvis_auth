@@ -63,7 +63,9 @@ def check_voice_it():
 
     headers = {'PlatformID': '2', 'Content-Type': 'audio/wav', "UserId": userId, "VsitPassword": password, "VsitDeveloperId": developerID, "ContentLanguage":"en-US"}
     response = requests.post(
-                "https://siv.voiceprintportal.com/sivservice/api/authentications", headers=headers, data=wavData)
+                "https://api.voiceit.io/verification/voice", headers=headers, data=wavData)
+    
+    
     print(response.text)
      
 def record_audio():
