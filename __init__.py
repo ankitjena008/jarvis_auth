@@ -50,7 +50,6 @@ class AuthenticateSkill(MycroftSkill):
         self.speak_dialog("auth.me")
         record_audio()
         play_audio('Audio_.wav')
-        r = requests.get('https://api.github.com/events')
 
 
 def record_audio():
