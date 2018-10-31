@@ -12,10 +12,10 @@ from mycroft.skills.core import MycroftSkill, intent_handler, intent_file_handle
 import pyaudio, wave, sys
 import time
 
-CHUNK = 8192
+CHUNK = 1024
 FORMAT = pyaudio.paInt16
-CHANNELS = 1
-RATE = 16000
+CHANNELS = 2
+RATE = 44100
 RECORD_SECONDS = 5
 WAVE_OUTPUT_FILENAME = 'Audio_.wav'
 
@@ -48,8 +48,8 @@ class AuthenticateSkill(MycroftSkill):
         p = pyaudio.PyAudio()
         for i in range(p.get_device_count()):
             print('Index : ', i, "\n", p.get_device_info_by_index(i))
-        self.speak_dialog("auth.me")
-        time.sleep(5)
+        #self.speak_dialog("auth.me")
+        #time.sleep(5)
         record_audio()
         play_audio('Audio_.wav')
 
@@ -58,14 +58,13 @@ def record_audio():
 
     p = pyaudio.PyAudio()
     stream = p.open(format=FORMAT,
-                    channels = 1,
+                    channels = CHANNELS,
                     rate = RATE,
                     input = True,
-                    input_device_index = 1,
                     frames_per_buffer = CHUNK)
 
     print("* Now Recording")
-
+    time.sleep(1)
     frames = []
     for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
         data = stream.read(CHUNK)
@@ -86,6 +85,7 @@ def record_audio():
 
 
 def play_audio(file):
+    print('Now playing')
     f = wave.open(file, "rb")
     p = pyaudio.PyAudio()
     stream = p.open(format=p.get_format_from_width(f.getsampwidth()),
@@ -99,6 +99,7 @@ def play_audio(file):
     stream.stop_stream()
     stream.close()
     p.terminate()
+    print('Audio ended')
 
 
 # The "create_skill()" method is used to create an instance of the skill.
